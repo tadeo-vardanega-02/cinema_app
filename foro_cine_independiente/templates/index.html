@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Foro Cine Independiente</h1>
+<p>Bienvenido a la comunidad donde discutimos cine independiente.</p>
+
+<section id="lista-hilos">
+    {% if hilos %}
+        <ul>
+            {% for hilo in hilos %}
+                <li>
+                    <a href="{{ url_for('hilo', hilo_id=hilo.id) }}">{{ hilo.titulo }}</a>
+                    <small>por {{ hilo.autor.username }} - {{ hilo.fecha_creacion.strftime('%Y-%m-%d %H:%M') }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay hilos aún. ¡Sé el primero en crear uno!</p>
+    {% endif %}
+</section>
+{% endblock %}
